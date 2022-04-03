@@ -24,12 +24,13 @@ string readTxt(string file){
     infile.close();
     return res;
 }
-void duipai(){
+void compile(){
 /// compile start
-    system("g++ -std=c++17 ../codeforces.cpp -o ../codeforces");
-    system("g++ -std=c++17 temp.cpp -o temp");
+    system("g++ -std=c++17 -Ofast ../codeforces.cpp -o ../codeforces");
+    system("g++ -std=c++17 -Ofast temp.cpp -o temp");
 /// compile comlpete
-
+}
+void duipai(){
 /// run start
     string myans,corretans;
     struct timeval tv;
@@ -54,12 +55,14 @@ void duipai(){
     corretans=readTxt("tempout.txt");
 /// run complete
     if(myans==corretans)cout<<"AC\n";
-    else cout<<"WA\n";
+    else {
+        cout<<"WA\n";
+        exit(0);
+    }
 }
 
 ofstream of;
 string file="in.txt";
-int n=5000;
 
 void gendata(){
 /// genertating data start
@@ -74,9 +77,12 @@ void gendata(){
 }
 
 signed main(){
-    ///  生測資
-    gendata();
+    compile();
+    while(true){
+        ///  生測資
+        gendata();
 
-    /// 對拍
-    duipai();
+        /// 對拍
+        duipai();
+    }
 }
